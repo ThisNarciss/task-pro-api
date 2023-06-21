@@ -9,13 +9,13 @@ router.post("/login", ctrl.login);
 router.post("/logout", authenticate, ctrl.logout);
 router.get("/current", authenticate, ctrl.getCurrent);
 router.patch(
-  "/profile",
+  "/current/:userId",
   authenticate,
   upload.single("avatar"),
   ctrl.editUserProfile
 );
 router.patch(
-  "/theme",
+  "/current/:userId/theme",
   authenticate,
 
   ctrl.editUserTheme

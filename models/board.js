@@ -7,7 +7,7 @@ const boardSchema = new Schema(
       type: String,
       required: [true, "Set name for board"],
     },
-    boardBackground: {
+    background: {
       type: String,
     },
     icon: {

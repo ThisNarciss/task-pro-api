@@ -14,8 +14,9 @@ const taskSchema = new Schema(
     },
     priority: {
       type: String,
-      enum: ["Without priority", "Low", "Medium", "High"],
+      enum: ["without priority", "low", "medium", "high"],
       required: [true, "Set priority for task"],
+      default: "without priority",
     },
     deadline: {
       type: Date,

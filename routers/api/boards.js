@@ -13,6 +13,11 @@ router.post("/", authenticate, ctrl.addBoard);
 router.delete("/:boardId", authenticate, isValidId, ctrl.deleteBoard);
 
 router.patch("/:boardId", authenticate, isValidId, ctrl.editBoard);
-router.patch("/:boardId", authenticate, isValidId, ctrl.editBoardBackground);
+router.patch(
+  "/:boardId/background",
+  authenticate,
+  isValidId,
+  ctrl.editBoardBackground
+);
 
 module.exports = router;

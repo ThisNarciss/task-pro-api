@@ -20,6 +20,11 @@ const userSchema = new Schema(
     },
     token: String,
     avatarUrl: String,
+    theme: {
+      type: String,
+      enum: ["dark", "light", "violet"],
+      default: "dark",
+    },
   },
   { versionKey: false, timestamps: true }
 );

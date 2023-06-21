@@ -6,12 +6,12 @@ const { authenticate, isValidId } = require("../../middlewares");
 
 router.get("/", authenticate, ctrl.getColumns);
 
-router.get("/:boardId", authenticate, isValidId, ctrl.getColumnById);
+router.get("/:columnId", authenticate, isValidId, ctrl.getColumnById);
 
 router.post("/", authenticate, ctrl.addColumn);
 
-router.delete("/:boardId", authenticate, isValidId, ctrl.deleteColumn);
+router.delete("/:columnId", authenticate, isValidId, ctrl.deleteColumn);
 
-router.patch("/:boardId", authenticate, isValidId, ctrl.editColumn);
+router.patch("/:columnId", authenticate, isValidId, ctrl.editColumn);
 
 module.exports = router;

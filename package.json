@@ -21,6 +21,7 @@
     "cross-env": "7.0.3",
     "dotenv": "^16.0.3",
     "express": "4.17.1",
+    "express-async-handler": "^1.2.0",
     "gravatar": "^1.8.2",
     "jimp": "^0.22.8",
     "joi": "^17.9.2",

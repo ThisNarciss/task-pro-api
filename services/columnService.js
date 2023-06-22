@@ -2,7 +2,7 @@ const { Column } = require("../models");
 
 const getColumns = async (owner) => {
   try {
-    const result = await Column.find(owner);
+    const result = await Column.find({owner}, "-createdAt -updatedAt");
     return result;
   } catch (error) {
     return error;
@@ -11,7 +11,7 @@ const getColumns = async (owner) => {
 
 const getColumnById = async (id) => {
   try {
-    const result = await Column.findById(id);
+    const result = await Column.findById(id, "-createdAt -updatedAt");
     return result;
   } catch (error) {
     return error;
@@ -29,7 +29,7 @@ const addColumn = async (body) => {
 
 const deleteColumn = async (id) => {
   try {
-    const result = await Column.findByIdAndRemove(id);
+    const result = await Column.findByIdAndRemove({_id: id});
     return result;
   } catch (error) {
     return error;
@@ -38,7 +38,7 @@ const deleteColumn = async (id) => {
 
 const editColumn = async (id, body) => {
   try {
-    const result = await Column.findByIdAndUpdate(id, body, { new: true });
+    const result = await Column.findByIdAndUpdate({_id: id}, body, { new: true });
     return result;
   } catch (error) {
     return error;

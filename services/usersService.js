@@ -1,34 +1,62 @@
 const { User } = require("../models");
 
 const findUserByEmail = async (email) => {
-  const user = await User.findOne({ email });
-  return user;
+  try {
+    const user = await User.findOne({ email });
+    return user;
+  } catch (error) {
+    return error;
+  }
 };
 
 const findUserById = async (id) => {
-  const user = await User.findOne({ _id: id });
-  return user;
+  try {
+    const user = await User.findOne({ _id: id });
+    return user;
+  } catch (error) {
+    return error;
+  }
 };
 
 const createUser = async (body) => {
-  const user = await User.create(body);
-  return user;
+  try {
+    const user = await User.create(body);
+    return user;
+  } catch (error) {
+    return error;
+  }
 };
 
 const loginUser = async (id, token) => {
-  await User.findByIdAndUpdate(id, { token });
+  try {
+    await User.findByIdAndUpdate(id, { token });
+  } catch (error) {
+    return error;
+  }
 };
 
 const logoutUser = async (id) => {
-  await User.findByIdAndUpdate(id, { token: "" });
+  try {
+    await User.findByIdAndUpdate(id, { token: "" });
+  } catch (error) {
+    return error;
+  }
 };
 
 const editUserProfile = async (id, body, avatar) => {
-  await User.findByIdAndUpdate(id, { ...body, avatarUrl: avatar });
+  try {
+    await User.findByIdAndUpdate(id, { ...body, avatarUrl: avatar });
+  } catch (error) {
+    return error;
+  }
 };
 
 const changeColorTheme = async (id, theme) => {
-  await User.findByIdAndUpdate(id, { theme });
+  try {
+    await User.findByIdAndUpdate(id, { theme });
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = {

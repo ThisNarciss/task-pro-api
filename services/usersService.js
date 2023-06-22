@@ -6,12 +6,12 @@ const findUserByEmail = async (email) => {
 };
 
 const findUserById = async (id) => {
-  const user = await User.findOne(id);
+  const user = await User.findOne({ _id: id });
   return user;
 };
 
-const createUser = async (name, email, hashPassword) => {
-  const user = await User.create({ name, email, password: hashPassword });
+const createUser = async (body) => {
+  const user = await User.create(body);
   return user;
 };
 

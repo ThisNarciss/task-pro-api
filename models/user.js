@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../utils");
+const Joi = require("joi");
 
 const userSchema = new Schema(
   {
@@ -33,4 +34,22 @@ userSchema.post("save", handleMongooseError);
 
 const User = model("user", userSchema);
 
-module.exports = User;
+const registerSchema = Joi.object({
+  name: Joi.string().trim().min(2).required(),
+  email: Joi.string().email().trim().required(),
+  password: Joi.string().min(6).required(),
+});
+
+const loginUserSchema = Joi.object({
+  email: Joi.string().email().trim().required(),
+  password: Joi.string().required(),
+});
+
+const editProfileSchema = Joi.object({
+  name: Joi.string().trim().min(2),
+  email: Joi.string().email().trim(),
+  password: Joi.string().min(6),
+  avatar: Joi.string(),
+});
+
+module.exports = { User, registerSchema, loginUserSchema, editProfileSchema };

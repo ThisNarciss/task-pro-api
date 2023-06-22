@@ -8,7 +8,7 @@ router.post("/register", ctrl.registration);
 router.post("/login", ctrl.login);
 router.post("/logout", authenticate, ctrl.logout);
 router.get("/current", authenticate, ctrl.getCurrent);
-router.patch(
+router.put(
   "/current/:userId",
   authenticate,
   upload.single("avatar"),

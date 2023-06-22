@@ -8,16 +8,16 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, isValidId, ctrl.getBoardById);
 
-router.post("/", authenticate, ctrl.addBoard);
+router.post("/", ctrl.addBoard);
 
-router.delete("/:boardId", authenticate, isValidId, ctrl.deleteBoard);
+router.delete("/:boardId", isValidId("boardId"), ctrl.deleteBoard);
 
 router.patch("/:boardId", authenticate, isValidId, ctrl.editBoard);
-router.patch(
+router.get(
   "/:boardId/background",
   authenticate,
   isValidId,
-  ctrl.editBoardBackground
+  ctrl.getBoardBackgrounds
 );
 
 module.exports = router;

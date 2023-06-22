@@ -1,7 +1,8 @@
-const getUniqAvatarName = (id, mimetype) => {
+const getUniqAvatarName = (mimetype) => {
   const index = mimetype.indexOf("/");
   const format = mimetype.slice(index + 1, mimetype.length);
-  const uniqAvatarName = `avatar-${id}.${format}`;
+  const date = Date.now();
+  const uniqAvatarName = `avatar-${date}.${format}`;
   return uniqAvatarName;
 };
 

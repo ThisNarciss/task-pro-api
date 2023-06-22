@@ -6,7 +6,7 @@ const { validateBody } = require("../../utils");
 
 const { authenticate, isValidId } = require("../../middlewares");
 
-router.get("/", authenticate, validateBody(columnJoiSchema), ctrl.getColumns);
+router.get("/", authenticate, ctrl.getColumns);
 
 router.get("/:columnId", authenticate, isValidId, ctrl.getColumnById);
 

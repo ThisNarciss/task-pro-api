@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../utils");
+const Joi = require("joi");
 
 const columnSchema = new Schema(
   {
@@ -20,4 +21,8 @@ columnSchema.post("save", handleMongooseError);
 
 const Column = model("column", columnSchema);
 
-module.exports = Column;
+const columnJoiSchema = Joi.object({
+  title: Joi.string().required(),
+});
+
+module.exports = { Column, columnJoiSchema };

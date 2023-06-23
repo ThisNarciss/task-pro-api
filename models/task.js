@@ -22,7 +22,7 @@ const taskSchema = new Schema(
       type: Date,
       required: [true, "Set deadline for task"],
     },
-    owner: {
+    column: {
       type: Schema.Types.ObjectId,
       ref: "column",
       required: [true, "Set owner for task"],
@@ -40,7 +40,7 @@ const addTaskSchema = Joi.object({
   description: Joi.string(),
   priority: Joi.string().required(),
   deadline: Joi.date().required(),
-  owner: Joi.string().required(),
+  column: Joi.string().required(),
 });
 
 const editTaskSchema = Joi.object({
@@ -50,10 +50,10 @@ const editTaskSchema = Joi.object({
   deadline: Joi.date().required(),
 });
 
-const changeTaskOwner = Joi.object({
-  owner: Joi.string().required(),
+const changeTaskColumn = Joi.object({
+  column: Joi.string().required(),
 });
 
-const taskSchemas = { addTaskSchema, editTaskSchema, changeTaskOwner };
+const taskSchemas = { addTaskSchema, editTaskSchema, changeTaskColumn };
 
 module.exports = { Task, taskSchemas };

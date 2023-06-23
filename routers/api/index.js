@@ -3,6 +3,7 @@ const columnsRouter = require("./columns");
 const tasksRouter = require("./tasks");
 const usersRouter = require("./auth");
 const emailRouter = require("./email");
+const backgroundsRouter = require("./backgrounds");
 
 module.exports = {
   boardsRouter,
@@ -10,4 +11,5 @@ module.exports = {
   columnsRouter,
   tasksRouter,
   emailRouter,
+  backgroundsRouter,
 };

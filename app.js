@@ -9,6 +9,7 @@ const {
   usersRouter,
   tasksRouter,
   emailRouter,
+  backgroundsRouter,
 } = require("./routers/api");
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/boards", boardsRouter);
 app.use("/api/columns", columnsRouter);
 app.use("/api/tasks", tasksRouter);
 app.use("/api/email", emailRouter);
+app.use("/api/backgrounds", backgroundsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

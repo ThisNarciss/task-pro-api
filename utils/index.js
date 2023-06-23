@@ -3,6 +3,7 @@ const ctrlWrapper = require("./ctrlWrapper");
 const getUniqAvatarName = require("./getUniqAvatarName");
 const validateBody = require("./validateBody");
 const handleMongooseError = require("./handleMongooseError");
+const getSendHelpData = require("./getSendHelpData");
 
 module.exports = {
   HttpError,
@@ -10,4 +11,5 @@ module.exports = {
   getUniqAvatarName,
   validateBody,
   handleMongooseError,
+  getSendHelpData,
 };

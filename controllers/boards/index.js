@@ -5,6 +5,7 @@ const editBoard = require("./editBoard");
 const getBoardBackgrounds = require("./getBoardBackgrounds");
 const getBoardById = require("./getBoardById");
 const getBoards = require("./getBoards");
+const updateActive = require("./updateActive");
 
 module.exports = {
   addBoard: ctrlWrapper(addBoard),
@@ -13,4 +14,5 @@ module.exports = {
   getBoardBackgrounds: ctrlWrapper(getBoardBackgrounds),
   getBoardById: ctrlWrapper(getBoardById),
   getBoards: ctrlWrapper(getBoards),
+  updateActive: ctrlWrapper(updateActive),
 };

@@ -2,7 +2,8 @@ const { boardService } = require("../../services");
 const { HttpError } = require("../../utils");
 
 const addBoard = async (req, res) => {
-  const { _id: owner } = req.user;
+  // const { _id: owner } = req.user;
+  const owner = "64957536190e7fa0757ffdc2";
   const result = await boardService.add({ ...req.body, owner });
   if (result.status === 400) {
     throw HttpError(400);

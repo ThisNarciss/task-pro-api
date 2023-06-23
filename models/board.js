@@ -16,6 +16,10 @@ const boardSchema = new Schema(
       type: String,
       default: "",
     },
+    active: {
+      type: Boolean,
+      default: false,
+    },
 
     owner: {
       type: Schema.Types.ObjectId,
@@ -33,6 +37,7 @@ const addBoardSchema = Joi.object({
   title: Joi.string().required(),
   background: Joi.string(),
   icon: Joi.string(),
+  active: Joi.bool(),
 });
 
 const editBoardSchema = Joi.object({
@@ -41,4 +46,14 @@ const editBoardSchema = Joi.object({
   icon: Joi.string(),
 });
 
-module.exports = { Board, addBoardSchema, editBoardSchema };
+const editActiveSchema = Joi.object({
+  active: Joi.bool().required(),
+});
+
+const boardSchemas = {
+  addBoardSchema,
+  editBoardSchema,
+  editActiveSchema,
+};
+
+module.exports = { Board, boardSchemas };

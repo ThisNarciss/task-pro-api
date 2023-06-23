@@ -38,7 +38,7 @@ const add = async (body) => {
 
 const update = async (id, body) => {
   try {
-    const result = await Board.findByIdAndUpdate(id, body);
+    const result = await Board.findByIdAndUpdate(id, body, { new: true });
     return result;
   } catch (error) {
     return error;
@@ -47,7 +47,19 @@ const update = async (id, body) => {
 
 const deleteOne = async (id) => {
   try {
-    const result = await Board.findByIdAndRemove({ _id: id });
+    const result = await Board.findByIdAndRemove(id);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+const updateActiveStatus = async (id, body) => {
+  try {
+    const result = await Board.findByIdAndUpdate(id, body, {
+      new: true,
+      select: "active",
+    });
     return result;
   } catch (error) {
     return error;
@@ -60,4 +72,5 @@ module.exports = {
   update,
   getAll,
   getOne,
+  updateActiveStatus,
 };

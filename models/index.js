@@ -1,7 +1,7 @@
 const Board = require("./board");
 const { Column, columnJoiSchema } = require("./column");
 const { Task, taskSchemas } = require("./task");
-const User = require("./user");
+const { User, userSchemas } = require("./user");
 
 module.exports = {
   Board,
@@ -10,4 +10,5 @@ module.exports = {
   Task,
   taskSchemas,
   User,
+  userSchemas,
 };

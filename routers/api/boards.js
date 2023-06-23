@@ -27,11 +27,5 @@ router.patch(
   validateBody(boardSchemas.editActiveSchema),
   ctrl.updateActive
 );
-router.get(
-  "/:boardId/background",
-
-  isValidId,
-  ctrl.getBoardBackgrounds
-);
 
 module.exports = router;

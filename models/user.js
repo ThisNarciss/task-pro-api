@@ -51,6 +51,8 @@ const profileSchema = Joi.object({
   password: Joi.string().min(6),
   avatar: Joi.string(),
 });
-
-const userSchemas = { registerSchema, loginSchema, profileSchema };
+const themeSchema = Joi.object({
+  theme: Joi.string().valid("dark", "light", "violet"),
+});
+const userSchemas = { registerSchema, loginSchema, profileSchema, themeSchema };
 module.exports = { User, userSchemas };

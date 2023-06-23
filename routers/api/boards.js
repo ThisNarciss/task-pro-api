@@ -2,20 +2,34 @@ const express = require("express");
 const router = express.Router();
 const ctrl = require("../../controllers/boards");
 
-const { authenticate, isValidId } = require("../../middlewares");
+const { isValidId } = require("../../middlewares");
+const { validateBody } = require("../../utils");
+const { boardSchemas } = require("../../models");
 
-router.get("/", authenticate, ctrl.getBoards);
+router.get("/", ctrl.getBoards);
 
-router.get("/:boardId", authenticate, isValidId, ctrl.getBoardById);
+router.get("/:boardId", isValidId("boardId"), ctrl.getBoardById);
 
-router.post("/", ctrl.addBoard);
+router.post("/", validateBody(boardSchemas.addBoardSchema), ctrl.addBoard);
 
 router.delete("/:boardId", isValidId("boardId"), ctrl.deleteBoard);
 
-router.patch("/:boardId", authenticate, isValidId, ctrl.editBoard);
+router.put(
+  "/:boardId",
+  isValidId("boardId"),
+  validateBody(boardSchemas.editBoardSchema),
+  ctrl.editBoard
+);
+
+router.patch(
+  "/:boardId/active",
+  isValidId("boardId"),
+  validateBody(boardSchemas.editActiveSchema),
+  ctrl.updateActive
+);
 router.get(
   "/:boardId/background",
-  authenticate,
+
   isValidId,
   ctrl.getBoardBackgrounds
 );

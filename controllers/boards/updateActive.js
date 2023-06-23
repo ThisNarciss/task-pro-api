@@ -1,9 +1,9 @@
 const { boardService } = require("../../services");
 const { HttpError } = require("../../utils");
 
-const editBoard = async (req, res) => {
+const updateActive = async (req, res) => {
   const id = req.params.boardId;
-  const result = await boardService.update(id, req.body);
+  const result = await boardService.updateActiveStatus(id, req.body);
   if (!result) {
     throw HttpError(404);
   }
@@ -14,4 +14,4 @@ const editBoard = async (req, res) => {
   });
 };
 
-module.exports = editBoard;
+module.exports = updateActive;

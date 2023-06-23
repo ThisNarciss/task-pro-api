@@ -2,7 +2,7 @@ const { User } = require("../models");
 
 const findUserByEmail = async (email) => {
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }, "-createdAt -updatedAt");
     return user;
   } catch (error) {
     return error;
@@ -11,7 +11,7 @@ const findUserByEmail = async (email) => {
 
 const findUserById = async (id) => {
   try {
-    const user = await User.findOne({ _id: id });
+    const user = await User.findOne({ _id: id }, "-createdAt -updatedAt");
     return user;
   } catch (error) {
     return error;
@@ -45,7 +45,15 @@ const logoutUser = async (id) => {
 
 const editUserProfile = async (id, body, avatar) => {
   try {
-    await User.findByIdAndUpdate(id, { ...body, avatarUrl: avatar });
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        ...body,
+        avatarUrl: avatar,
+      },
+      { new: true }
+    );
+    return user;
   } catch (error) {
     return error;
   }
@@ -53,7 +61,8 @@ const editUserProfile = async (id, body, avatar) => {
 
 const changeColorTheme = async (id, theme) => {
   try {
-    await User.findByIdAndUpdate(id, { theme });
+    const user = await User.findByIdAndUpdate(id, { theme }, { new: true });
+    return user.theme;
   } catch (error) {
     return error;
   }

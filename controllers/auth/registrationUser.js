@@ -1,5 +1,5 @@
 const { userService } = require("../../services");
-const util = require("../../utils");
+const { HttpError } = require("../../utils");
 const bcrypt = require("bcrypt");
 
 const registration = async (req, res) => {
@@ -7,7 +7,7 @@ const registration = async (req, res) => {
 
   const user = await userService.findUserByEmail(email);
   if (user) {
-    throw util.HttpError(409, "Email in use");
+    throw HttpError(409, "Email in use");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);

@@ -28,12 +28,14 @@ app.use("/api/email", emailRouter);
 app.use("/api/backgrounds", backgroundsRouter);
 
 app.use((req, res) => {
-  res.status(404).json({ message: "Not found" });
+  res
+    .status(404)
+    .json({ status: "failed", code: 404, data: { message: "Not found" } });
 });
 
 app.use((err, req, res, next) => {
-  const { status = 500, message = "Server error" } = err;
-  res.status(status).json({ message });
+  const { status = 500, message = "Server error", code } = err;
+  res.status(status).json({ status: "failed", code, data: { message } });
 });
 
 module.exports = app;

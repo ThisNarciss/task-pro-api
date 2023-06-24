@@ -17,8 +17,8 @@ class TaskService {
     return deletedTask;
   }
 
-  async getAll(owner) {
-    const allTasks = await Task.find({ owner });
+  async getAll(column) {
+    const allTasks = await Task.find({ column });
     if (!allTasks) {
       return null;
     }
@@ -33,7 +33,7 @@ class TaskService {
     return task;
   }
 
-  async changeOwner(id, data) {
+  async changeColumn(id, data) {
     const result = await Task.findByIdAndUpdate(id, { ...data });
     if (!result) {
       return null;

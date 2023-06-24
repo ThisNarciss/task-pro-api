@@ -2,8 +2,8 @@ const { HttpError } = require("../../utils");
 const { taskServices } = require("../../services");
 
 const getTasks = async (req, res) => {
-  const { _id: columnId } = req.user;
-  const result = await taskServices.getAll(columnId);
+  const { _id: id } = req.user;
+  const result = await taskServices.getAll(id);
   if (!result) {
     throw HttpError(404, {
       code: 404,

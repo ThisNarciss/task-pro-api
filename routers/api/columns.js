@@ -8,16 +8,16 @@ const { authenticate, isValidId } = require("../../middlewares");
 
 router.get("/", authenticate, ctrl.getColumns);
 
-router.get("/:columnId", authenticate, isValidId, ctrl.getColumnById);
+router.get("/:columnId", authenticate, isValidId("columnId"), ctrl.getColumnById);
 
 router.post("/", authenticate, validateBody(columnJoiSchema), ctrl.addColumn);
 
-router.delete("/:columnId", authenticate, isValidId, ctrl.deleteColumn);
+router.delete("/:columnId", authenticate, isValidId("columnId"), ctrl.deleteColumn);
 
 router.patch(
   "/:columnId",
   authenticate,
-  isValidId,
+  isValidId("columnId"),
   validateBody(columnJoiSchema),
   ctrl.editColumn
 );

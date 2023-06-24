@@ -4,7 +4,7 @@ const deleteTask = require("./deleteTask");
 const editTask = require("./editTask");
 const getTaskById = require("./getTaskById");
 const getTasks = require("./getTasks");
-const changeTaskOwner = require("./changeTaskOwner");
+const changeTaskColumn = require("./changeTaskOwner");
 
 module.exports = {
   addTask: ctrlWrapper(addTask),
@@ -12,5 +12,5 @@ module.exports = {
   editTask: ctrlWrapper(editTask),
   getTaskById: ctrlWrapper(getTaskById),
   getTasks: ctrlWrapper(getTasks),
-  changeTaskOwner: ctrlWrapper(changeTaskOwner),
+  changeTaskColumn: ctrlWrapper(changeTaskColumn),
 };

@@ -3,7 +3,7 @@ const { HttpError } = require("../../utils");
 
 const editColumn = async (req, res) => {
   const { columnId } = req.params;
-  const result = await columnService.editColumn({ columnId }, req.body);
+  const result = await columnService.editColumn(columnId, req.body);
   if (!result) {
     throw HttpError(404);
   }

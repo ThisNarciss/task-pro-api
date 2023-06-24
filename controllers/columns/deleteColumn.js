@@ -3,7 +3,7 @@ const { HttpError } = require("../../utils");
 
 const deleteColumn = async (req, res) => {
   const { columnId } = req.params;
-  const result = await columnService.deleteColumn({ columnId });
+  const result = await columnService.deleteColumn(columnId);
   if (!result) {
     throw HttpError(404);
   }

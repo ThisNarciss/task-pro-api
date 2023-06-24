@@ -70,7 +70,6 @@ const changeColorTheme = async (id, theme) => {
       { theme: theme },
       { new: true, select: "theme -_id" }
     );
-    console.log(user);
     return user;
   } catch (error) {
     return error;

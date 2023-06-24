@@ -8,6 +8,7 @@ const defaultErrorsMessages = {
 const HttpError = (status, message = defaultErrorsMessages[status]) => {
   const error = new Error(message);
   error.status = status;
+  error.code = status;
   return error;
 };
 

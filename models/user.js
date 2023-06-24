@@ -36,18 +36,18 @@ const User = model("user", userSchema);
 
 const registerSchema = Joi.object({
   name: Joi.string().trim().min(2).required(),
-  email: Joi.string().email().trim().required(),
+  email: Joi.string().email().trim().lowercase().required(),
   password: Joi.string().min(6).required(),
 });
 
 const loginSchema = Joi.object({
-  email: Joi.string().email().trim().required(),
+  email: Joi.string().email().lowercase().trim().required(),
   password: Joi.string().required(),
 });
 
 const profileSchema = Joi.object({
   name: Joi.string().trim().min(2),
-  email: Joi.string().email().trim(),
+  email: Joi.string().email().lowercase().trim(),
   password: Joi.string().min(6),
   avatar: Joi.string(),
 });

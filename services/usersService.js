@@ -29,7 +29,12 @@ const createUser = async (body) => {
 
 const loginUser = async (id, token) => {
   try {
-    await User.findByIdAndUpdate(id, { token });
+    const user = await User.findByIdAndUpdate(
+      id,
+      { token },
+      { select: "-password -token -createdAt -updatedAt" }
+    );
+    return user;
   } catch (error) {
     return error;
   }
@@ -43,15 +48,14 @@ const logoutUser = async (id) => {
   }
 };
 
-const editUserProfile = async (id, body, avatar) => {
+const editUserProfile = async (id, body) => {
   try {
     const user = await User.findByIdAndUpdate(
       id,
       {
         ...body,
-        avatarUrl: avatar,
       },
-      { new: true }
+      { new: true, select: "name email theme avatarUrl -_id" }
     );
     return user;
   } catch (error) {
@@ -61,8 +65,13 @@ const editUserProfile = async (id, body, avatar) => {
 
 const changeColorTheme = async (id, theme) => {
   try {
-    const user = await User.findByIdAndUpdate(id, { theme }, { new: true });
-    return user.theme;
+    const user = await User.findByIdAndUpdate(
+      id,
+      { theme: theme },
+      { new: true, select: "theme -_id" }
+    );
+    console.log(user);
+    return user;
   } catch (error) {
     return error;
   }

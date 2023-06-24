@@ -10,7 +10,6 @@ const boardSchema = new Schema(
     },
     background: {
       type: String,
-      default: "",
     },
     icon: {
       type: String,
@@ -34,14 +33,14 @@ boardSchema.post("save", handleMongooseError);
 const Board = model("board", boardSchema);
 
 const addBoardSchema = Joi.object({
-  title: Joi.string().required(),
+  title: Joi.string().trim().required(),
   background: Joi.string(),
   icon: Joi.string(),
   active: Joi.bool(),
 });
 
 const editBoardSchema = Joi.object({
-  title: Joi.string(),
+  title: Joi.string().trim(),
   background: Joi.string(),
   icon: Joi.string(),
 });

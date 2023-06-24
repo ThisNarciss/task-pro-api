@@ -2,9 +2,7 @@ const { columnService } = require("../../services");
 const { HttpError } = require("../../utils");
 
 const addColumn = async (req, res) => {
-  const { _id: owner } = req.user;
-
-  const result = await columnService.addColumn({ ...req.body, owner });
+  const result = await columnService.addColumn({ ...req.body });
   if (result.status === 400) {
     throw HttpError(400);
   }

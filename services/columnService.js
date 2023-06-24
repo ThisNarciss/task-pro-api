@@ -1,8 +1,8 @@
 const { Column } = require("../models");
 
-const getColumns = async (owner) => {
+const getColumns = async (board) => {
   try {
-    const result = await Column.find({ owner }, "-createdAt -updatedAt");
+    const result = await Column.find({ board }, "-createdAt -updatedAt");
     return result;
   } catch (error) {
     return error;

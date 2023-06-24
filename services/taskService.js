@@ -17,8 +17,8 @@ class TaskService {
     return deletedTask;
   }
 
-  async getAll(owner) {
-    const allTasks = await Task.find({ owner });
+  async getAll(board) {
+    const allTasks = await Task.find({ board });
     if (!allTasks) {
       return null;
     }

@@ -32,6 +32,11 @@ const taskSchema = new Schema(
       ref: "user",
       required: [true, "Set owner for task"],
     },
+    board: {
+      type: Schema.Types.ObjectId,
+      ref: "board",
+      required: [true, "Set board for task"],
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -47,6 +52,7 @@ const addTaskSchema = Joi.object({
   deadline: Joi.string().required(),
   column: Joi.string().required(),
   owner: Joi.string().required(),
+  board: Joi.string().required(),
 });
 
 const editTaskSchema = Joi.object({

@@ -2,8 +2,8 @@ const { HttpError } = require("../../utils");
 const { taskServices } = require("../../services");
 
 const getTasks = async (req, res) => {
-  const { _id: ownerId } = req.user;
-  const result = await taskServices.getAll(ownerId);
+  const { _id: columnId } = req.user;
+  const result = await taskServices.getAll(columnId);
   if (!result) {
     throw HttpError(404, {
       code: 404,
@@ -11,8 +11,8 @@ const getTasks = async (req, res) => {
     });
   }
   res.json({
-    status: 200,
-    message: "Success",
+    status: "Success",
+    code: 200,
     data: result,
   });
 };

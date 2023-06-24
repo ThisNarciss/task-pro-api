@@ -29,7 +29,7 @@ const addColumn = async (body) => {
 
 const deleteColumn = async (id) => {
   try {
-    const result = await Column.findByIdAndRemove({ _id: id });
+    const result = await Column.findByIdAndRemove(id);
     return result;
   } catch (error) {
     return error;
@@ -38,19 +38,16 @@ const deleteColumn = async (id) => {
 
 const editColumn = async (id, body) => {
   try {
-    const result = await Column.findByIdAndUpdate({ _id: id }, body, {
-      new: true,
-    });
+    const result = await Column.findByIdAndUpdate(id, body, { new: true });
     return result;
   } catch (error) {
     return error;
   }
 };
-const columnService = {
+module.exports = {
   getColumns,
   getColumnById,
   deleteColumn,
   addColumn,
   editColumn,
 };
-module.exports = columnService;

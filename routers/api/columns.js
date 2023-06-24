@@ -8,7 +8,7 @@ const { authenticate, isValidId } = require("../../middlewares");
 
 router.get("/", authenticate, ctrl.getColumns);
 
-router.get("/:columnId", authenticate, isValidId, ctrl.getColumnById);
+router.get("/:columnId", authenticate, isValidId("columnId"), ctrl.getColumnById);
 
 router.post("/", authenticate, validateBody(columnJoiSchema), ctrl.addColumn);
 

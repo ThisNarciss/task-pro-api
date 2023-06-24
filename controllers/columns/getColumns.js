@@ -3,7 +3,7 @@ const { HttpError } = require("../../utils");
 
 const getColumns = async (req, res) => {
   const { _id: owner } = req.user;
-  const result = await columnService.getColumns({ owner });
+  const result = await columnService.getColumns(owner);
   if (!result) {
     throw HttpError(404);
   }

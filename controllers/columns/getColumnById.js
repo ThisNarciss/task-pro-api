@@ -2,8 +2,8 @@ const { columnService } = require("../../services");
 const { HttpError } = require("../../utils");
 
 const getColumnById = async (req, res) => {
-  const { columnId } = req.params;
-  const result = await columnService.getColumnById({ columnId });
+  const id = req.params.columnId;
+  const result = await columnService.getColumnById(id);
   if (!result) {
     throw HttpError(404);
   }

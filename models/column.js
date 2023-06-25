@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../utils");
+const Joi = require("joi");
 
 const columnSchema = new Schema(
   {
@@ -8,7 +9,7 @@ const columnSchema = new Schema(
       required: [true, "Set name for column"],
     },
 
-    owner: {
+    board: {
       type: Schema.Types.ObjectId,
       ref: "board",
     },
@@ -20,4 +21,18 @@ columnSchema.post("save", handleMongooseError);
 
 const Column = model("column", columnSchema);
 
-module.exports = Column;
+const addColumnJoiSchema = Joi.object({
+  title: Joi.string().trim().required(),
+  board: Joi.string().required(),
+});
+
+const editColumnJoiSchema = Joi.object({
+  title: Joi.string().trim(),
+});
+
+const columnJoiSchemas = {
+  addColumnJoiSchema,
+  editColumnJoiSchema,
+};
+
+module.exports = { Column, columnJoiSchemas };

@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../utils");
+const Joi = require("joi");
 
 const boardSchema = new Schema(
   {
@@ -12,6 +13,11 @@ const boardSchema = new Schema(
     },
     icon: {
       type: String,
+      default: "",
+    },
+    active: {
+      type: Boolean,
+      default: false,
     },
 
     owner: {
@@ -26,4 +32,27 @@ boardSchema.post("save", handleMongooseError);
 
 const Board = model("board", boardSchema);
 
-module.exports = Board;
+const addBoardSchema = Joi.object({
+  title: Joi.string().trim().required(),
+  background: Joi.string(),
+  icon: Joi.string(),
+  active: Joi.bool(),
+});
+
+const editBoardSchema = Joi.object({
+  title: Joi.string().trim(),
+  background: Joi.string(),
+  icon: Joi.string(),
+});
+
+const editActiveSchema = Joi.object({
+  active: Joi.bool().required(),
+});
+
+const boardSchemas = {
+  addBoardSchema,
+  editBoardSchema,
+  editActiveSchema,
+};
+
+module.exports = { Board, boardSchemas };

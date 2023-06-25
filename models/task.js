@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../utils");
+const Joi = require("joi");
 
 const taskSchema = new Schema(
   {
@@ -10,21 +11,26 @@ const taskSchema = new Schema(
 
     description: {
       type: String,
-      required: [true, "Set description for task"],
+      default: "",
     },
     priority: {
       type: String,
       enum: ["without priority", "low", "medium", "high"],
-      required: [true, "Set priority for task"],
       default: "without priority",
     },
     deadline: {
-      type: Date,
+      type: String,
       required: [true, "Set deadline for task"],
+    },
+    column: {
+      type: Schema.Types.ObjectId,
+      ref: "column",
+      required: [true, "Set column for task"],
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "column",
+      ref: "user",
+      required: [true, "Set owner for task"],
     },
   },
   { versionKey: false, timestamps: true }
@@ -34,4 +40,25 @@ taskSchema.post("save", handleMongooseError);
 
 const Task = model("task", taskSchema);
 
-module.exports = Task;
+const addTaskSchema = Joi.object({
+  title: Joi.string().required(),
+  description: Joi.string(),
+  priority: Joi.string(),
+  deadline: Joi.string().required(),
+  column: Joi.string().required(),
+});
+
+const editTaskSchema = Joi.object({
+  title: Joi.string().required(),
+  description: Joi.string(),
+  priority: Joi.string(),
+  deadline: Joi.string().required(),
+});
+
+const changeTaskColumn = Joi.object({
+  column: Joi.string().required(),
+});
+
+const taskSchemas = { addTaskSchema, editTaskSchema, changeTaskColumn };
+
+module.exports = { Task, taskSchemas };

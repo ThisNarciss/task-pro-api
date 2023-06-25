@@ -1,16 +1,17 @@
 const { boardService } = require("../../services");
 const { HttpError } = require("../../utils");
 
-const deleteBoard = async (req, res) => {
-  const result = await boardService.deleteOne(req.params.boardId);
+const updateActive = async (req, res) => {
+  const id = req.params.boardId;
+  const result = await boardService.updateActiveStatus(id, req.body);
   if (!result) {
     throw HttpError(404);
   }
   res.json({
     status: "success",
     code: 200,
-    message: "board deleted",
+    data: result,
   });
 };
 
-module.exports = deleteBoard;
+module.exports = updateActive;

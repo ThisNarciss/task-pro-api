@@ -9,7 +9,6 @@ const getBoards = async (req, res) => {
   }
 
   //   const sorting = [...result].sort((a, b) => a.title.localeCompare(b.title));
-  //   console.log(sorting);
   res.json({
     status: "success",
     code: 200,

@@ -19,12 +19,17 @@ const taskSchema = new Schema(
       default: "without priority",
     },
     deadline: {
-      type: Date,
+      type: String,
       required: [true, "Set deadline for task"],
     },
     column: {
       type: Schema.Types.ObjectId,
       ref: "column",
+      required: [true, "Set column for task"],
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
       required: [true, "Set owner for task"],
     },
   },
@@ -38,16 +43,16 @@ const Task = model("task", taskSchema);
 const addTaskSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string(),
-  priority: Joi.string().required(),
-  deadline: Joi.date().required(),
+  priority: Joi.string(),
+  deadline: Joi.string().required(),
   column: Joi.string().required(),
 });
 
 const editTaskSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string(),
-  priority: Joi.string().required(),
-  deadline: Joi.date().required(),
+  priority: Joi.string(),
+  deadline: Joi.string().required(),
 });
 
 const changeTaskColumn = Joi.object({

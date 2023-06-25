@@ -20,7 +20,10 @@ const userSchema = new Schema(
       unique: true,
     },
     token: String,
-    avatarUrl: String,
+    avatarUrl: {
+      type: String,
+      default: "https://i.ibb.co/7VFWmkN/user2x-min.png",
+    },
     theme: {
       type: String,
       enum: ["dark", "light", "violet"],

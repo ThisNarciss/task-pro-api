@@ -10,7 +10,7 @@ const login = async (req, res) => {
   if (!user) {
     throw util.HttpError(404, "Email or password is wrong");
   }
-  const isMatch = bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     throw util.HttpError(404, "Email or password is wrong");
   }

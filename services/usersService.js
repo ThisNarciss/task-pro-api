@@ -55,7 +55,7 @@ const editUserProfile = async (id, body) => {
       {
         ...body,
       },
-      { new: true, select: "name email theme avatarUrl -_id" }
+      { new: true, select: "name email avatarUrl -_id" }
     );
     return user;
   } catch (error) {

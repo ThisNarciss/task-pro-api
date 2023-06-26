@@ -1,0 +1,567 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "2.0.2",
+    "title": "Task Pro API",
+    "description": "Showing off swagger-ui-express",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json", "multipart/form-data"],
+  "servers": [
+    { "url": "http://localhost:8682" },
+    { "url": "https://task-pro-api.onrender.com" }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Users service endpoints"
+    },
+    {
+      "name": "Boards",
+      "description": "Boards service endpoints"
+    },
+    {
+      "name": "Columns",
+      "description": "Columns service endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks service endpoints"
+    },
+    {
+      "name": "Email",
+      "description": "Email service endpoints"
+    },
+    {
+      "name": "Backgrounds",
+      "description": "Backgrounds service endpoints"
+    }
+  ],
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User registration",
+        "parameters": [],
+        "security": [],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success register",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Email in use",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User login",
+        "parameters": [],
+        "security": [],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": { "description": "Email or password is wrong", "content": {} }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": { "description": "Server error", "content": {} }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": { "description": "Server error", "content": {} }
+        }
+      }
+    },
+    "/users/current/:userId": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Edits user profile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string",
+            "description": "User id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User profile object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeEditRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Profile edits success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "409": {
+            "description": "Email already used",
+            "content": {}
+          },
+          "500": { "description": "Server error", "content": {} }
+        }
+      }
+    },
+    "/users/:userId/theme": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Edit user theme",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string",
+            "description": "User id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Theme object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileEditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Theme edits success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileEditResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": { "description": "Server error", "content": {} }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "format": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "201"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Successful user registration",
+                "example": "User added"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 201,
+          "data": { "message": "User added" }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "User id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "User name",
+                    "example": "Bubbu Smith"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User email",
+                    "format": "email"
+                  },
+                  "avatar": {
+                    "type": "string",
+                    "description": "User avatar",
+                    "example": "https://i.ibb.co/7VFWmkN/user2x-min.png"
+                  },
+                  "theme": {
+                    "type": "string",
+                    "description": "User theme",
+                    "enum": ["dark", "light", "violet"],
+                    "example": "dark"
+                  }
+                }
+              },
+              "token": {
+                "type": "string",
+                "description": "User token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTgxYjZhMTZiNGQxYTNlNzk5OTNlZiIsImlhdCI6MTY4Nzc4MzY3MywiZXhwIjoxNjg3ODY2NDczfQ.KKh43mw_3mhnQJFGML8T4vhpNeWp8xJfuR9y1VWyQyg"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "user": {
+              "_id": "64981b6a16b4d1a3e79993ef",
+              "name": "Bubbu Smith",
+              "email": "tum5325@i.com",
+              "avatarUrl": "https://i.ibb.co/7VFWmkN/user2x-min.png",
+              "theme": "dark"
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTgxYjZhMTZiNGQxYTNlNzk5OTNlZiIsImlhdCI6MTY4Nzc4MzY3MywiZXhwIjoxNjg3ODY2NDczfQ.KKh43mw_3mhnQJFGML8T4vhpNeWp8xJfuR9y1VWyQyg"
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string",
+                "description": "User token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTgxYjZhMTZiNGQxYTNlNzk5OTNlZiIsImlhdCI6MTY4Nzc4MzY3MywiZXhwIjoxNjg3ODY2NDczfQ.KKh43mw_3mhnQJFGML8T4vhpNeWp8xJfuR9y1VWyQyg"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTgxYjZhMTZiNGQxYTNlNzk5OTNlZiIsImlhdCI6MTY4Nzc4MzY3MywiZXhwIjoxNjg3ODY2NDczfQ.KKh43mw_3mhnQJFGML8T4vhpNeWp8xJfuR9y1VWyQyg"
+          }
+        }
+      },
+      "ThemeEditRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "User theme",
+            "enum": ["dark", "light", "violet"],
+            "example": "dark"
+          }
+        }
+      },
+      "ThemeEditResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "format": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "theme": {
+                "type": "string",
+                "description": "Successful theme edit",
+                "example": "light"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "theme": "light"
+          }
+        }
+      },
+      "ProfileEditRequest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "ProfileEditResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "format": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "201"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "User name",
+                    "example": "Freddy Kruger"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User email",
+                    "format": "email"
+                  },
+                  "avatarUrl": {
+                    "type": "string",
+                    "description": "User avatar",
+                    "example": "https://i.ibb.co/7VFWmkN/user2x-min.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 201,
+          "data": {
+            "user": {
+              "name": "Freddy Kruger",
+              "email": "tum5325@i.com",
+              "avatarUrl": "https://i.ibb.co/7VFWmkN/user2x-min.png"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

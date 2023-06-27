@@ -9,7 +9,7 @@ const deleteBoard = async (req, res) => {
   res.json({
     status: "success",
     code: 200,
-    message: "board deleted",
+    data: { message: "board deleted" },
   });
 };
 

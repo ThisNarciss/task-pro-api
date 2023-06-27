@@ -18,7 +18,7 @@ class TaskService {
   }
 
   async getAll(column) {
-    const allTasks = await Task.find({ column });
+    const allTasks = await Task.find({ column }, "-createdAt -updatedAt");
     if (!allTasks) {
       return null;
     }

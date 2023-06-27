@@ -190,7 +190,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/ThemeEditRequest"
+                "$ref": "#/components/schemas/ProfileEditRequest"
               }
             }
           }
@@ -202,7 +202,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentResponse"
+                  "$ref": "#/components/schemas/ProfileEditResponse"
                 }
               }
             }
@@ -239,7 +239,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProfileEditRequest"
+                "$ref": "#/components/schemas/ThemeEditRequest"
               }
             }
           }
@@ -250,7 +250,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProfileEditResponse"
+                  "$ref": "#/components/schemas/ThemeEditResponse"
                 }
               }
             }

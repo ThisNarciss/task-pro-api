@@ -77,6 +77,10 @@
           "409": {
             "description": "Email in use",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -113,7 +117,11 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "404": { "description": "Email or password is wrong", "content": {} }
+          "404": { "description": "Email or password is wrong", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
         }
       }
     },
@@ -258,6 +266,258 @@
           "500": { "description": "Server error", "content": {} }
         }
       }
+    },
+    "/boards/": {
+      "get": {
+        "tags": ["Boards"],
+        "summary": "Get all board",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "All boards found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoardsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["Boards"],
+        "summary": "Add board",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Add board object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Board add success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBoardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/boards/:boardId": {
+      "put": {
+        "tags": ["Boards"],
+        "summary": "Edit board",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Edit board object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Board edit success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditBoardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Boards"],
+        "summary": "Delete board",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Board deleted success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBoardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Boards"],
+        "summary": "Get board by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Board found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoardByIdResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/boards/:boardId/active": {
+      "patch": {
+        "tags": ["Boards"],
+        "summary": "Update active board",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Update active board",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActiveBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Active board update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateActiveBoardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -288,7 +548,7 @@
           "status": {
             "type": "string",
             "description": "Response status",
-            "format": "success"
+            "example": "success"
           },
           "code": {
             "type": "number",
@@ -514,7 +774,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "201"
+            "example": "200"
           },
           "data": {
             "type": "object",
@@ -522,6 +782,11 @@
               "user": {
                 "type": "object",
                 "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "User id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
                   "name": {
                     "type": "string",
                     "description": "User name",
@@ -545,12 +810,502 @@
 
         "example": {
           "status": "success",
-          "code": 201,
+          "code": 200,
           "data": {
             "user": {
+              "_id": "64981b6a16b4d1a3e79993ef",
               "name": "Freddy Kruger",
               "email": "tum5325@i.com",
               "avatarUrl": "https://i.ibb.co/7VFWmkN/user2x-min.png"
+            }
+          }
+        }
+      },
+      "AddBoardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Board title"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Board icon",
+            "example": "icon.svg"
+          },
+          "background": {
+            "type": "string",
+            "description": "Board background",
+            "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+          }
+        }
+      },
+      "AddBoardResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "201"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "board": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "649a97a2c1be193710fd1607"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Board title"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "description": "Board icon",
+                    "example": "icon.svg"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Active board",
+                    "example": false
+                  },
+                  "background": {
+                    "type": "string",
+                    "description": "Board background",
+                    "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 201,
+          "data": {
+            "board": {
+              "title": "My work",
+              "background": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg",
+              "icon": "",
+              "active": false,
+              "owner": "64981b6a16b4d1a3e79993ef",
+              "_id": "649a97a2c1be193710fd1607"
+            }
+          }
+        }
+      },
+      "DeleteBoardResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Board removal notice",
+                "example": "board deleted"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "message": "board deleted"
+          }
+        }
+      },
+      "EditBoardRequest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Board title"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Board icon",
+            "example": "icon.svg"
+          },
+          "background": {
+            "type": "string",
+            "description": "Board background",
+            "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+          }
+        }
+      },
+      "EditBoardResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "board": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "649a97a2c1be193710fd1607"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Board title"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "description": "Board icon",
+                    "example": "icon.svg"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Active board",
+                    "example": false
+                  },
+                  "background": {
+                    "type": "string",
+                    "description": "Board background",
+                    "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Board owner",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "board": {
+              "title": "My work",
+              "background": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg",
+              "icon": "",
+              "active": false,
+              "owner": "64981b6a16b4d1a3e79993ef",
+              "_id": "649a97a2c1be193710fd1607"
+            }
+          }
+        }
+      },
+      "GetBoardByIdResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "board": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "649a97a2c1be193710fd1607"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Board title"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "description": "Board icon",
+                    "example": "icon.svg"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Active board",
+                    "example": false
+                  },
+                  "background": {
+                    "type": "string",
+                    "description": "Board background",
+                    "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Board owner id",
+                    "example": "64981b6a16b4d1a3e79993ef"
+                  }
+                },
+                "column": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Column id",
+                        "example": "649a97a2c1be193710fd1607"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Column title"
+                      },
+                      "tasks": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "description": "Task id",
+                              "example": "649a97a2c1be193710fd1607"
+                            },
+                            "title": {
+                              "type": "string",
+                              "description": "Task title"
+                            },
+                            "description": {
+                              "type": "string",
+                              "description": "Task description"
+                            },
+                            "priority": {
+                              "type": "string",
+
+                              "description": "Task priority",
+                              "enum": [
+                                "without priority",
+                                "low",
+                                "medium",
+                                "high"
+                              ],
+                              "example": "low"
+                            },
+                            "deadline": {
+                              "type": "string",
+                              "description": "Task deadline",
+                              "example": "27/06/2023"
+                            },
+                            "column": {
+                              "type": "string",
+                              "description": "Task owner column id",
+                              "example": "649a97a2c1be193710fd1607"
+                            },
+                            "owner": {
+                              "type": "string",
+                              "description": "Task owner id",
+                              "example": "649a97a2c1be193710fd1607"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "board": {
+              "_id": "6495bef6d7f939c64a2849d4",
+              "title": "Kukaracha",
+              "background": "",
+              "icon": "",
+              "active": false,
+              "owner": "6495bbfac50468f0fb4f6dee"
+            },
+            "columns": [
+              {
+                "_id": "6496c570425583d7d0c94c56",
+                "title": "Back in",
+                "board": "6496c570425583d7d0c94c56",
+                "tasks": [
+                  {
+                    "_id": "6496c700ec26574142eafbe1",
+                    "title": "GGGGGGGG",
+                    "description": "",
+                    "priority": "low",
+                    "owner": "6496c570425583d7d0c94c56",
+                    "deadline": "27/06/2023",
+                    "column": "6496c570425583d7d0c94c56"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "GetBoardsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "boards": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Board id",
+                      "example": "649a97a2c1be193710fd1607"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Board title"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "description": "Board icon",
+                      "example": "icon.svg"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "description": "Active board",
+                      "example": false
+                    },
+                    "background": {
+                      "type": "string",
+                      "description": "Board background",
+                      "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                    },
+                    "owner": {
+                      "type": "string",
+                      "description": "Board owner id",
+                      "example": "64981b6a16b4d1a3e79993ef"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "boards": [
+              {
+                "_id": "6495bef6d7f939c64a2849d4",
+                "title": "Kukaracha",
+                "background": "",
+                "icon": "",
+                "active": false,
+                "owner": "6495bbfac50468f0fb4f6dee"
+              }
+            ]
+          }
+        }
+      },
+
+      "UpdateActiveBoardRequest": {
+        "type": "object",
+        "required": ["active"],
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Is board active",
+            "example": true
+          }
+        }
+      },
+      "UpdateActiveBoardResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "board": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Active board",
+                    "example": false
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "board": {
+              "_id": "649a97a2c1be193710fd1607",
+              "active": false
             }
           }
         }

@@ -36,7 +36,6 @@ const addBoardSchema = Joi.object({
   title: Joi.string().trim().required(),
   background: Joi.string(),
   icon: Joi.string(),
-  active: Joi.bool(),
 });
 
 const editBoardSchema = Joi.object({

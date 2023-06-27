@@ -38,7 +38,10 @@ const add = async (body) => {
 
 const update = async (id, body) => {
   try {
-    const result = await Board.findByIdAndUpdate(id, body, { new: true });
+    const result = await Board.findByIdAndUpdate(id, body, {
+      new: true,
+      select: "_id title background icon active ",
+    });
     return result;
   } catch (error) {
     return error;

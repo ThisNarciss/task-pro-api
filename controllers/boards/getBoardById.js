@@ -6,9 +6,9 @@ const getBoardById = async (req, res) => {
   const result = await boardService.getOne(id);
   const columns = await columnService.getColumns(id);
   const addTaskInColumn = await Promise.all(
-    columns.map(async ({ title, _id }) => {
+    columns.map(async ({ title, _id, board }) => {
       const tasks = await taskServices.getAll(_id);
-      return { _id, title, tasks };
+      return { _id, title, board, tasks };
     })
   );
   if (!result) {

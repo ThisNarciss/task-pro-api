@@ -3,8 +3,8 @@ const { taskServices } = require("../../services");
 
 const changeTaskColumn = async (req, res) => {
   const { taskId } = req.params;
-  const { column } = req.body;
-  if (!column) {
+  const { column, index } = req.body;
+  if (!column || !index) {
     throw HttpError(400, "provide all required fields");
   }
   const result = await taskServices.changeColumn(taskId, req.body);

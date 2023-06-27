@@ -32,6 +32,10 @@ const taskSchema = new Schema(
       ref: "user",
       required: [true, "Set owner for task"],
     },
+    index: {
+      type: Number,
+      required: [true, "Set task index"],
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -46,6 +50,7 @@ const addTaskSchema = Joi.object({
   priority: Joi.string(),
   deadline: Joi.string().required(),
   column: Joi.string().required(),
+  index: Joi.number().required(),
 });
 
 const editTaskSchema = Joi.object({
@@ -57,6 +62,7 @@ const editTaskSchema = Joi.object({
 
 const changeTaskColumn = Joi.object({
   column: Joi.string().required(),
+  index: Joi.number().required(),
 });
 
 const taskSchemas = { addTaskSchema, editTaskSchema, changeTaskColumn };

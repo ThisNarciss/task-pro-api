@@ -16,7 +16,7 @@ const sendEmail = async (req, res) => {
   res.json({
     status: "success",
     code: 200,
-    message: "message send successful",
+    data: { message: "message send successful" },
   });
 };
 

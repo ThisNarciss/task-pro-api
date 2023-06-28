@@ -4,7 +4,7 @@ const ctrl = require("../../controllers/columns");
 const { columnJoiSchemas } = require("../../models");
 const { validateBody } = require("../../utils");
 
-const { authenticate, isValidId } = require("../../middlewares");
+const { authenticate, isValidId, isReqObject } = require("../../middlewares");
 
 router.get("/", authenticate, ctrl.getColumns);
 
@@ -18,7 +18,9 @@ router.get(
 router.post(
   "/",
   authenticate,
+  isReqObject,
   validateBody(columnJoiSchemas.addColumnJoiSchema),
+
   ctrl.addColumn
 );
 
@@ -33,7 +35,9 @@ router.put(
   "/:columnId",
   authenticate,
   isValidId("columnId"),
+  isReqObject,
   validateBody(columnJoiSchemas.editColumnJoiSchema),
+
   ctrl.editColumn
 );
 

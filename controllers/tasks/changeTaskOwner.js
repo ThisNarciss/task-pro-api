@@ -11,7 +11,7 @@ const changeTaskColumn = async (req, res) => {
   if (!result) {
     throw HttpError(404, `Not found`);
   }
-  res.json({ status: "Success", code: 200, data: result });
+  res.json({ status: "Success", code: 200, data: { task: result } });
 };
 
 module.exports = changeTaskColumn;

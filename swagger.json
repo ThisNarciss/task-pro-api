@@ -12,8 +12,8 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
-    { "url": "http://localhost:8682" },
-    { "url": "https://task-pro-api.onrender.com" }
+    { "url": "http://localhost:8682/api" },
+    { "url": "https://task-pro-api.onrender.com/api" }
   ],
   "tags": [
     {
@@ -170,7 +170,7 @@
         }
       }
     },
-    "/users/current/:userId": {
+    "/users/current/{userId}": {
       "put": {
         "tags": ["Users"],
         "summary": "Edits user profile",
@@ -207,6 +207,10 @@
               }
             }
           },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
           "401": {
             "description": "Unauthorized",
             "content": {}
@@ -219,7 +223,7 @@
         }
       }
     },
-    "/users/:userId/theme": {
+    "/users/current/{userId}/theme": {
       "patch": {
         "tags": ["Users"],
         "summary": "Edit user theme",
@@ -256,7 +260,7 @@
             }
           },
           "400": {
-            "description": "Bad request (invalid request body)",
+            "description": "Bad request or not valid id",
             "content": {}
           },
           "401": {
@@ -341,7 +345,7 @@
       }
     },
 
-    "/boards/:boardId": {
+    "/boards/{boardId}": {
       "put": {
         "tags": ["Boards"],
         "summary": "Edit board",
@@ -376,6 +380,10 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
           },
           "404": {
             "description": "Not found",
@@ -415,6 +423,10 @@
               }
             }
           },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
           "404": {
             "description": "Not found",
             "content": {}
@@ -453,6 +465,10 @@
               }
             }
           },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
           "404": {
             "description": "Not found",
             "content": {}
@@ -468,7 +484,7 @@
         }
       }
     },
-    "/boards/:boardId/active": {
+    "/boards/{boardId}/active": {
       "patch": {
         "tags": ["Boards"],
         "summary": "Update active board",
@@ -504,6 +520,10 @@
               }
             }
           },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
           "404": {
             "description": "Not found",
             "content": {}
@@ -512,6 +532,451 @@
             "description": "Unauthorized",
             "content": {}
           },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/columns/": {
+      "post": {
+        "tags": ["Columns"],
+        "summary": "Add column",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Add column object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddColumnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": { "description": "Unauthorized", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/columns/{columnId}": {
+      "get": {
+        "tags": ["Columns"],
+        "summary": "Get column by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnId",
+            "required": true,
+            "type": "string",
+            "description": "Column id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Get column success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetColumnByIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": { "description": "Unauthorized", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Columns"],
+        "summary": "Delete column",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnId",
+            "required": true,
+            "type": "string",
+            "description": "Column id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Column deleted success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": ["Columns"],
+        "summary": "Edit column",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnId",
+            "required": true,
+            "type": "string",
+            "description": "Column id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Edit column object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditColumnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Column edit success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/tasks/": {
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Add task",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Add task object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": { "description": "Unauthorized", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/tasks/{taskId}": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Get task by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true,
+            "type": "string",
+            "description": "Task id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Get task success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTaskByIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": { "description": "Unauthorized", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tasks"],
+        "summary": "Delete task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true,
+            "type": "string",
+            "description": "Task id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Task deleted success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": ["Tasks"],
+        "summary": "Edit task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true,
+            "type": "string",
+            "description": "Task id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Edit task object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task edit success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Tasks"],
+        "summary": "Edit task column",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true,
+            "type": "string",
+            "description": "Task id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Edit task column object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditTaskColumnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task edit column success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditTaskColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/email/": {
+      "post": {
+        "tags": ["Email"],
+        "summary": "Send help message",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Send help message",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success send help message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": { "description": "Unauthorized", "content": {} },
           "500": {
             "description": "Server error",
             "content": {}
@@ -553,7 +1018,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "201"
+            "example": 201
           },
           "data": {
             "type": "object",
@@ -600,7 +1065,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -671,7 +1136,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -716,7 +1181,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -774,7 +1239,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -852,7 +1317,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "201"
+            "example": 201
           },
           "data": {
             "type": "object",
@@ -916,7 +1381,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -969,7 +1434,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -1038,7 +1503,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -1190,7 +1655,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -1275,7 +1740,7 @@
           "code": {
             "type": "number",
             "description": "Response code",
-            "example": "200"
+            "example": 200
           },
           "data": {
             "type": "object",
@@ -1308,6 +1773,834 @@
               "active": false
             }
           }
+        }
+      },
+      "AddColumnRequest": {
+        "type": "object",
+        "required": ["title", "board"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column title",
+            "example": "To do"
+          },
+          "board": {
+            "type": "string",
+            "description": "Column board id",
+            "example": "To do"
+          }
+        }
+      },
+      "AddColumnResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 201
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Column id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Column title",
+                    "example": "To do"
+                  },
+                  "board": {
+                    "type": "string",
+                    "description": "Column board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 201,
+          "data": {
+            "column": {
+              "title": "toDo",
+              "board": "649bf0a328674965ca73b0b9",
+              "_id": "649bf3b1f922805e943a9061",
+              "createdAt": "2023-06-28T08:47:45.292Z",
+              "updatedAt": "2023-06-28T08:47:45.292Z"
+            }
+          }
+        }
+      },
+      "GetColumnByIdResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Column id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Column title",
+                    "example": "To do"
+                  },
+                  "board": {
+                    "type": "string",
+                    "description": "Column board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "column": {
+              "title": "toDo",
+              "board": "649bf0a328674965ca73b0b9",
+              "_id": "649bf3b1f922805e943a9061"
+            }
+          }
+        }
+      },
+      "DeleteColumnResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Delete message",
+                "example": "Column deleted"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "message": "Column deleted"
+          }
+        }
+      },
+      "EditColumnRequest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column title",
+            "example": "To do"
+          }
+        }
+      },
+      "EditColumnResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Column id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Column title",
+                    "example": "To do"
+                  },
+                  "board": {
+                    "type": "string",
+                    "description": "Column board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "column": {
+              "title": "toDo",
+              "board": "649bf0a328674965ca73b0b9",
+              "_id": "649bf3b1f922805e943a9061"
+            }
+          }
+        }
+      },
+      "AddTaskRequest": {
+        "type": "object",
+        "required": ["title", "deadline", "column", "index"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Task title",
+            "example": "Help me"
+          },
+          "description": {
+            "type": "string",
+            "description": "Column description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Task priority",
+            "enum": ["without priority", "low", "medium", "high"],
+            "example": "without priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Task deadline",
+            "example": "20/07/2023"
+          },
+          "column": {
+            "type": "string",
+            "description": "Task column id",
+            "example": "649bf3b1f922805e943a9061"
+          },
+          "index": {
+            "type": "number",
+            "description": "Task index",
+            "example": 1
+          }
+        }
+      },
+      "AddTaskResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 201
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Task id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Task title",
+                    "example": "Help me"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Column description"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "description": "Task priority",
+                    "enum": ["without priority", "low", "medium", "high"],
+                    "example": "without priority"
+                  },
+                  "deadline": {
+                    "type": "string",
+                    "description": "Task deadline",
+                    "example": "20/07/2023"
+                  },
+                  "column": {
+                    "type": "string",
+                    "description": "Task column id",
+                    "example": "649bf3b1f922805e943a9061"
+                  },
+                  "index": {
+                    "type": "number",
+                    "description": "Task index",
+                    "example": 1
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Task owner id",
+                    "example": "649bf3b1f922805e943a9061"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "task": {
+              "title": "Help me",
+              "description": "",
+              "priority": "without priority",
+              "deadline": "20/07/2023",
+              "column": "649bf452a556957f7c3bad13",
+              "owner": "649be03cb01628d96809da7f",
+              "index": 1,
+              "_id": "649bff2f20c0dbd0134ccbcb",
+              "createdAt": "2023-06-28T09:36:47.024Z",
+              "updatedAt": "2023-06-28T09:36:47.024Z"
+            }
+          }
+        }
+      },
+      "GetTaskByIdResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Task id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Task title",
+                    "example": "Help me"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Column description"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "description": "Task priority",
+                    "enum": ["without priority", "low", "medium", "high"],
+                    "example": "without priority"
+                  },
+                  "deadline": {
+                    "type": "string",
+                    "description": "Task deadline",
+                    "example": "20/07/2023"
+                  },
+                  "column": {
+                    "type": "string",
+                    "description": "Task column id",
+                    "example": "649bf3b1f922805e943a9061"
+                  },
+                  "index": {
+                    "type": "number",
+                    "description": "Task index",
+                    "example": 1
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Task owner id",
+                    "example": "649bf3b1f922805e943a9061"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "task": {
+              "_id": "649bff2f20c0dbd0134ccbcb",
+              "title": "Help me",
+              "description": "",
+              "priority": "without priority",
+              "deadline": "20/07/2023",
+              "column": "649bf452a556957f7c3bad13",
+              "owner": "649be03cb01628d96809da7f",
+              "index": 1
+            }
+          }
+        }
+      },
+      "DeleteTaskResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Delete message",
+                "example": "Task deleted"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "message": "Task deleted"
+          }
+        }
+      },
+      "EditTaskRequest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Task title",
+            "example": "Help me"
+          },
+          "description": {
+            "type": "string",
+            "description": "Column description"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Task priority",
+            "enum": ["without priority", "low", "medium", "high"],
+            "example": "without priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Task deadline",
+            "example": "20/07/2023"
+          }
+        }
+      },
+      "EditTaskResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Task id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Task title",
+                    "example": "Help me"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Column description"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "description": "Task priority",
+                    "enum": ["without priority", "low", "medium", "high"],
+                    "example": "without priority"
+                  },
+                  "deadline": {
+                    "type": "string",
+                    "description": "Task deadline",
+                    "example": "20/07/2023"
+                  },
+                  "column": {
+                    "type": "string",
+                    "description": "Task column id",
+                    "example": "649bf3b1f922805e943a9061"
+                  },
+                  "index": {
+                    "type": "number",
+                    "description": "Task index",
+                    "example": 1
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Task owner id",
+                    "example": "649bf3b1f922805e943a9061"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "task": {
+              "_id": "649bff2f20c0dbd0134ccbcb",
+              "title": "Help me please dude",
+              "description": "",
+              "priority": "without priority",
+              "deadline": "20/07/2023",
+              "column": "649bf452a556957f7c3bad13",
+              "owner": "649be03cb01628d96809da7f",
+              "index": 1
+            }
+          }
+        }
+      },
+      "EditTaskColumnRequest": {
+        "type": "object",
+        "required": ["column", "index"],
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "Task column id",
+            "example": "649bf3b1f922805e943a9061"
+          },
+          "index": {
+            "type": "number",
+            "description": "Task index",
+            "example": 1
+          }
+        }
+      },
+      "EditTaskColumnResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Task id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+
+                  "column": {
+                    "type": "string",
+                    "description": "Task column id",
+                    "example": "649bf3b1f922805e943a9061"
+                  },
+                  "index": {
+                    "type": "number",
+                    "description": "Task index",
+                    "example": 1
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Task owner id",
+                    "example": "649bf3b1f922805e943a9061"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "task": {
+              "_id": "649bff2f20c0dbd0134ccbcb",
+              "column": "649bf452a556957f7c3bad13",
+              "owner": "649be03cb01628d96809da7f",
+              "index": 1
+            }
+          }
+        }
+      },
+      "SendMessageRequest": {
+        "type": "object",
+        "required": ["email", "message"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "format": "email"
+          },
+          "message": {
+            "type": "string",
+            "description": "User message"
+          }
+        }
+      },
+      "SendMessageResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "request message",
+                "example": "message send successful"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "message": "message send successful"
+          }
+        }
+      },
+      "GetBackgroundsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Backgrounds id",
+                  "example": "649a97a2c1be193710fd1607"
+                },
+                "backgrounds": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "desktop": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Desktop backgrounds name",
+                              "example": "abstraction"
+                            },
+                            "link-1x": {
+                              "type": "string",
+                              "description": "Desktop backgrounds for 1x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                            },
+                            "link-2x": {
+                              "type": "string",
+                              "description": "Desktop backgrounds for 2x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/desktop-abstraction%402x.jpg"
+                            }
+                          }
+                        }
+                      },
+                      "tablet": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Tablet backgrounds name",
+                              "example": "abstraction"
+                            },
+                            "link-1x": {
+                              "type": "string",
+                              "description": "Tablet backgrounds link for 1x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/tablet-abstraction%401x.jpg"
+                            },
+                            "link-2x": {
+                              "type": "string",
+                              "description": "Tablet backgrounds link for 2x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/tablet-abstraction%402x.jpg"
+                            }
+                          }
+                        }
+                      },
+                      "mobile": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Mobile backgrounds name",
+                              "example": "abstraction"
+                            },
+                            "link-1x": {
+                              "type": "string",
+                              "description": "Mobile backgrounds link for 1x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/mobile-abstraction%401x.jpg"
+                            },
+                            "link-2x": {
+                              "type": "string",
+                              "description": "Mobile backgrounds link for 2x image",
+                              "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/mobile-abstraction%402x.jpg"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": [
+            {
+              "_id": "649c11398b5e1ead688f362b",
+              "backgrounds": [
+                {
+                  "desktop": [
+                    {
+                      "name": "abstraction",
+                      "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg",
+                      "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/desktop-abstraction%402x.jpg"
+                    }
+                  ]
+                },
+                {
+                  "tablet": [
+                    {
+                      "name": "abstraction",
+                      "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/tablet-abstraction%401x.jpg",
+                      "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/tablet-abstraction%402x.jpg"
+                    }
+                  ]
+                },
+                {
+                  "mobile": [
+                    {
+                      "name": "abstraction",
+                      "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/mobile-abstraction%401x.jpg",
+                      "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/mobile-abstraction%402x.jpg"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       }
     },

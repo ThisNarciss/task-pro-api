@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ctrl = require("../../controllers/tasks");
 
-const { authenticate, isValidId } = require("../../middlewares");
+const { authenticate, isValidId, isReqObject } = require("../../middlewares");
 const { validateBody } = require("../../utils");
 const { taskSchemas } = require("../../models");
 
@@ -11,6 +11,7 @@ router.get("/:taskId", authenticate, isValidId("taskId"), ctrl.getTaskById);
 router.post(
   "/",
   authenticate,
+  isReqObject,
   validateBody(taskSchemas.addTaskSchema),
   ctrl.addTask
 );
@@ -19,6 +20,7 @@ router.put(
   "/:taskId",
   authenticate,
   isValidId("taskId"),
+  isReqObject,
   validateBody(taskSchemas.editTaskSchema),
   ctrl.editTask
 );
@@ -26,6 +28,7 @@ router.patch(
   "/:taskId",
   authenticate,
   isValidId("taskId"),
+  isReqObject,
   validateBody(taskSchemas.changeTaskColumn),
   ctrl.changeTaskColumn
 );

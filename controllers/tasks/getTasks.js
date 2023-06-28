@@ -13,7 +13,7 @@ const getTasks = async (req, res) => {
   res.json({
     status: "Success",
     code: 200,
-    data: result,
+    data: { task: result },
   });
 };
 

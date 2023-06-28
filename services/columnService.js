@@ -38,7 +38,10 @@ const deleteColumn = async (id) => {
 
 const editColumn = async (id, body) => {
   try {
-    const result = await Column.findByIdAndUpdate(id, body, { new: true });
+    const result = await Column.findByIdAndUpdate(id, body, {
+      new: true,
+      select: "-createdAt -updatedAt",
+    });
     return result;
   } catch (error) {
     return error;

@@ -26,7 +26,7 @@ class TaskService {
   }
 
   async getById(id) {
-    const task = await Task.findOne({ _id: id });
+    const task = await Task.findOne({ _id: id }, "-createdAt -updatedAt");
     if (!task) {
       return null;
     }
@@ -34,7 +34,14 @@ class TaskService {
   }
 
   async changeColumn(id, data) {
-    const result = await Task.findByIdAndUpdate(id, { ...data });
+    const result = await Task.findByIdAndUpdate(
+      id,
+      { ...data },
+      {
+        new: true,
+        select: "-createdAt -updatedAt -title -description -priority -deadline",
+      }
+    );
     if (!result) {
       return null;
     }
@@ -42,7 +49,11 @@ class TaskService {
   }
 
   async update(id, data) {
-    const result = await Task.findOneAndUpdate({ _id: id }, { ...data });
+    const result = await Task.findByIdAndUpdate(
+      id,
+      { ...data },
+      { new: true, select: "-createdAt -updatedAt" }
+    );
     if (!result) {
       return null;
     }

@@ -54,10 +54,10 @@ const addTaskSchema = Joi.object({
 });
 
 const editTaskSchema = Joi.object({
-  title: Joi.string().required(),
+  title: Joi.string(),
   description: Joi.string(),
   priority: Joi.string(),
-  deadline: Joi.string().required(),
+  deadline: Joi.string(),
 });
 
 const changeTaskColumn = Joi.object({

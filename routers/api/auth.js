@@ -2,16 +2,28 @@ const express = require("express");
 const router = express.Router();
 const ctrl = require("../../controllers/auth");
 const { userSchemas } = require("../../models");
-const { authenticate, isValidId, upload } = require("../../middlewares");
+const {
+  authenticate,
+  isValidId,
+  upload,
+  isReqObject,
+} = require("../../middlewares");
 const { validateBody } = require("../../utils");
 
 router.post(
   "/register",
+  isReqObject,
   validateBody(userSchemas.registerSchema),
+
   ctrl.registration
 );
 
-router.post("/login", validateBody(userSchemas.loginSchema), ctrl.login);
+router.post(
+  "/login",
+  isReqObject,
+  validateBody(userSchemas.loginSchema),
+  ctrl.login
+);
 
 router.post("/logout", authenticate, ctrl.logout);
 
@@ -30,6 +42,7 @@ router.patch(
   "/current/:userId/theme",
   isValidId("userId"),
   authenticate,
+  isReqObject,
   validateBody(userSchemas.themeSchema),
   ctrl.editUserTheme
 );

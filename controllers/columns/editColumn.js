@@ -7,7 +7,7 @@ const editColumn = async (req, res) => {
   if (!result) {
     throw HttpError(404);
   }
-  res.json({ status: "success", code: 200, data: result });
+  res.json({ status: "success", code: 200, data: { column: result } });
 };
 
 module.exports = editColumn;

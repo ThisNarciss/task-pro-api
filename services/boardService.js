@@ -9,6 +9,15 @@ const getAll = async (owner) => {
   }
 };
 
+const findBoardByName = async (title, owner) => {
+  try {
+    const user = await Board.findOne({ title, owner }, "-createdAt -updatedAt");
+    return user;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getOne = async (id) => {
   try {
     const result = await Board.findById(id, "-createdAt -updatedAt");
@@ -76,4 +85,5 @@ module.exports = {
   getAll,
   getOne,
   updateActiveStatus,
+  findBoardByName,
 };

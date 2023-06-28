@@ -7,7 +7,7 @@ const getTaskById = async (req, res) => {
   if (!result) {
     throw HttpError(404, `not found`);
   }
-  res.json({ status: "Success", code: 200, data: result });
+  res.json({ status: "Success", code: 200, data: { task: result } });
 };
 
 module.exports = getTaskById;

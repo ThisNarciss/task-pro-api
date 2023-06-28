@@ -1,6 +1,6 @@
 const { Background } = require("../models");
 
-const getAll = async (owner) => {
+const getAll = async () => {
   try {
     const result = await Background.find();
     return result;

@@ -6,7 +6,9 @@ const addColumn = async (req, res) => {
   if (result.status === 400) {
     throw HttpError(400);
   }
-  res.json({ status: "success", code: 201, data: result });
+  res
+    .status(201)
+    .json({ status: "success", code: 201, data: { column: result } });
 };
 
 module.exports = addColumn;

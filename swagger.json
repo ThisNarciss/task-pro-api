@@ -333,6 +333,10 @@
             "description": "Unauthorized",
             "content": {}
           },
+          "409": {
+            "description": "A board with that name already exists",
+            "content": {}
+          },
           "500": {
             "description": "Server error",
             "content": {}

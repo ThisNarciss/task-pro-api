@@ -288,10 +288,6 @@
               }
             }
           },
-          "400": {
-            "description": "Bad request",
-            "content": {}
-          },
           "401": {
             "description": "Unauthorized",
             "content": {}
@@ -977,6 +973,30 @@
             "content": {}
           },
           "401": { "description": "Unauthorized", "content": {} },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/backgrounds/": {
+      "get": {
+        "tags": ["Backgrounds"],
+        "summary": "Get backgrounds",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Backgrounds find",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBackgroundsResponse"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Server error",
             "content": {}

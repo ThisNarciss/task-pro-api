@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { Board } = require("../models/board");
 
 const getAll = async (owner) => {
@@ -20,21 +21,67 @@ const findBoardByName = async (title, owner) => {
 
 const getOne = async (id) => {
   try {
-    const result = await Board.findById(id, "-createdAt -updatedAt");
-    return result;
+    const ObjectId = mongoose.Types.ObjectId;
+    const searchId = new ObjectId(id);
+    const result = await Board.aggregate(
+      [
+        { $match: { _id: searchId } },
+        {
+          $lookup: {
+            from: "columns",
+            localField: "_id",
+            foreignField: "board",
+            pipeline: [
+              {
+                $lookup: {
+                  from: "tasks",
+                  localField: "_id",
+                  foreignField: "column",
+                  as: "tasks",
+                },
+              },
+            ],
+            as: "columns",
+          },
+        },
+        {
+          $project: {
+            _id: 1,
+            title: 1,
+            background: 1,
+            icon: 1,
+            active: 1,
+            owner: 1,
+            columns: {
+              _id: 1,
+              title: 1,
+              board: 1,
+              tasks: {
+                _id: 1,
+                title: 1,
+                description: 1,
+                priority: 1,
+                deadline: 1,
+                column: 1,
+                owner: 1,
+                index: 1,
+              },
+            },
+          },
+        },
+      ],
+      { select: "-createdAt -updatedAt" }
+    );
+
+    if (result.length > 0) {
+      return result;
+    } else {
+      return null;
+    }
   } catch (error) {
     return error;
   }
 };
-
-// const getBackgrounds = async () => {
-//     try {
-//         const result = await Board.
-//         return result
-//     } catch (error) {
-//         return error
-//     }
-// }
 
 const add = async (body) => {
   try {

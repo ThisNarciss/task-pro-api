@@ -10,6 +10,7 @@ const boardSchema = new Schema(
     },
     background: {
       type: String,
+      default: "",
     },
     icon: {
       type: String,

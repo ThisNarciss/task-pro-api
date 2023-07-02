@@ -1,0 +1,229 @@
+{
+  "backgrounds": [
+    {
+      "name": "abstraction",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/desktop-abstraction%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/tablet-abstraction%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/tablet-abstraction%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/mobile-abstraction%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/mobile-abstraction%402x.jpg"
+      }
+    },
+    {
+      "name": "aerostats",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/desktop-aerostats%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/desktop-aerostats%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/tablet-aerostats%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/tablet-aerostats%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/mobile-aerostats%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/mobile-aerostats%402x.jpg"
+      }
+    },
+    {
+      "name": "balloon",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/desktop-balloon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/desktop-balloon%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/tablet-balloon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/tablet-balloon%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/mobile-balloon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/mobile-balloon%402x.jpg"
+      }
+    },
+    {
+      "name": "blue-sea",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438254/backgrounds/desktop-blue-sea%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438264/backgrounds/desktop-blue-sea%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438254/backgrounds/tablet-blue-sea%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438264/backgrounds/tablet-blue-sea%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438254/backgrounds/mobile-blue-sea%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438264/backgrounds/mobile-blue-sea%402x.jpg"
+      }
+    },
+    {
+      "name": "canyon",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/desktop-canyon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/desktop-canyon%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/tablet-canyon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/tablet-canyon%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/mobile-canyon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/mobile-canyon%402x.jpg"
+      }
+    },
+    {
+      "name": "clouds",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438248/backgrounds/desktop-clouds%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/desktop-clouds%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438248/backgrounds/tablet-clouds%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/tablet-clouds%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438248/backgrounds/mobile-clouds%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/mobile-clouds%402x.jpg"
+      }
+    },
+    {
+      "name": "fern",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438256/backgrounds/desktop-fern%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/desktop-fern%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438256/backgrounds/tablet-fern%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/tablet-fern%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438256/backgrounds/mobile-fern%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/mobile-fern%402x.jpg"
+      }
+    },
+    {
+      "name": "half-moon",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/desktop-half-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438261/backgrounds/desktop-half-moon%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/tablet-half-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438261/backgrounds/tablet-half-moon%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438259/backgrounds/mobile-half-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438261/backgrounds/mobile-half-moon%402x.jpg"
+      }
+    },
+    {
+      "name": "moon",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/desktop-moon%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/tablet-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/tablet-moon%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/mobile-moon%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/mobile-moon%402x.jpg"
+      }
+    },
+    {
+      "name": "mountains",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/desktop-mountains%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/desktop-mountains%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/tablet-mountains%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/tablet-mountains%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/mobile-mountains%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438252/backgrounds/mobile-mountains%402x.jpg"
+      }
+    },
+    {
+      "name": "pink-flowers",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/desktop-pink-flowers%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/desktop-pink-flowers%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/tablet-pink-flowers%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/tablet-pink-flowers%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/mobile-pink-flowers%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/mobile-pink-flowers%402x.jpg"
+      }
+    },
+    {
+      "name": "rocks",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/desktop-rocks%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/desktop-rocks%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/tablet-rocks%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/tablet-rocks%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438258/backgrounds/mobile-rocks%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438262/backgrounds/mobile-rocks%402x.jpg"
+      }
+    },
+    {
+      "name": "rose-tree",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/desktop-rose-tree%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438263/backgrounds/desktop-rose-tree%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/tablet-rose-tree%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438263/backgrounds/tablet-rose-tree%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438253/backgrounds/mobile-rose-tree%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438263/backgrounds/mobile-rose-tree%402x.jpg"
+      }
+    },
+    {
+      "name": "starry-sky",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/desktop-starry-sky%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/desktop-starry-sky%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/tablet-starry-sky%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/tablet-starry-sky%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438257/backgrounds/mobile-starry-sky%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438260/backgrounds/mobile-starry-sky%402x.jpg"
+      }
+    },
+    {
+      "name": "yacht",
+      "desktop": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-yacht%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/desktop-yacht%402x.jpg"
+      },
+      "tablet": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/tablet-yacht%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/tablet-yacht%402x.jpg"
+      },
+      "mobile": {
+        "link-1x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/mobile-yacht%401x.jpg",
+        "link-2x": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438255/backgrounds/mobile-yacht%402x.jpg"
+      }
+    }
+  ]
+}

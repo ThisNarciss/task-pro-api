@@ -14,7 +14,7 @@ const boardSchema = new Schema(
     },
     icon: {
       type: String,
-      default: "",
+      default: "puzzle-piece",
     },
     active: {
       type: Boolean,

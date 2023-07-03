@@ -1410,10 +1410,19 @@
           "data": {
             "type": "object",
             "properties": {
-              "message": {
-                "type": "string",
-                "description": "Board removal notice",
-                "example": "board deleted"
+              "deletedBoard": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "649a97a2c1be193710fd1607"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Board title"
+                  }
+                }
               }
             }
           }
@@ -1423,7 +1432,10 @@
           "status": "success",
           "code": 200,
           "data": {
-            "message": "board deleted"
+            "deletedColumn": {
+              "_id": "649bf0c528674965ca73b0bc",
+              "title": "toDo"
+            }
           }
         }
       },
@@ -1937,10 +1949,25 @@
           "data": {
             "type": "object",
             "properties": {
-              "message": {
-                "type": "string",
-                "description": "Delete message",
-                "example": "Column deleted"
+              "deletedColumn": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Column id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Column title",
+                    "example": "To do"
+                  },
+                  "board": {
+                    "type": "string",
+                    "description": "Column board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  }
+                }
               }
             }
           }
@@ -1950,7 +1977,11 @@
           "status": "success",
           "code": 200,
           "data": {
-            "message": "Column deleted"
+            "deletedColumn": {
+              "_id": "649bf0c528674965ca73b0bc",
+              "title": "toDo",
+              "board": "649bf0a328674965ca73b0b9"
+            }
           }
         }
       },
@@ -2235,10 +2266,26 @@
           "data": {
             "type": "object",
             "properties": {
-              "message": {
-                "type": "string",
-                "description": "Delete message",
-                "example": "Task deleted"
+              "deletedTask": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Task id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Task title",
+                    "example": "Help me"
+                  },
+
+                  "column": {
+                    "type": "string",
+                    "description": "Task column id",
+                    "example": "649bf3b1f922805e943a9061"
+                  }
+                }
               }
             }
           }
@@ -2248,7 +2295,11 @@
           "status": "success",
           "code": 200,
           "data": {
-            "message": "Task deleted"
+            "deletedTask": {
+              "_id": "649bf0c528674965ca73b0bc",
+              "title": "toDo",
+              "column": "649bf0a328674965ca73b0b9"
+            }
           }
         }
       },

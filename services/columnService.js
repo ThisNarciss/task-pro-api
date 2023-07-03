@@ -29,7 +29,9 @@ const addColumn = async (body) => {
 
 const deleteColumn = async (id) => {
   try {
-    const result = await Column.findByIdAndRemove(id);
+    const result = await Column.findByIdAndRemove(id, {
+      select: "_id title board",
+    });
     return result;
   } catch (error) {
     return error;

@@ -106,7 +106,9 @@ const update = async (id, body) => {
 
 const deleteOne = async (id) => {
   try {
-    const result = await Board.findByIdAndRemove(id);
+    const result = await Board.findByIdAndRemove(id, {
+      select: "_id title",
+    });
     return result;
   } catch (error) {
     return error;

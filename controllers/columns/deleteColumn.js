@@ -10,7 +10,7 @@ const deleteColumn = async (req, res) => {
   res.json({
     status: "success",
     code: 200,
-    data: { message: "Column deleted" },
+    data: { deletedColumn: result },
   });
 };
 

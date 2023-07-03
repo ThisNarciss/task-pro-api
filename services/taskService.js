@@ -10,7 +10,9 @@ class TaskService {
   }
 
   async delete(id) {
-    const deletedTask = await Task.findOneAndDelete({ _id: id });
+    const deletedTask = await Task.findByIdAndRemove(id, {
+      select: "_id title column",
+    });
     if (!deletedTask) {
       return null;
     }

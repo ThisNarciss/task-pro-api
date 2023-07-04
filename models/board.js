@@ -49,10 +49,15 @@ const editActiveSchema = Joi.object({
   active: Joi.bool().required(),
 });
 
+const editBackgroundSchema = Joi.object({
+  background: Joi.string().required(),
+});
+
 const boardSchemas = {
   addBoardSchema,
   editBoardSchema,
   editActiveSchema,
+  editBackgroundSchema,
 };
 
 module.exports = { Board, boardSchemas };

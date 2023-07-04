@@ -127,6 +127,15 @@ const updateActiveStatus = async (id, body) => {
   }
 };
 
+const editBackground = async (id, body) => {
+  try {
+    const result = await Board.findByIdAndUpdate(id, body);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   add,
   deleteOne,
@@ -135,4 +144,5 @@ module.exports = {
   getOne,
   updateActiveStatus,
   findBoardByName,
+  editBackground,
 };

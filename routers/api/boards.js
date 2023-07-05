@@ -43,4 +43,13 @@ router.patch(
   ctrl.updateActive
 );
 
+router.patch(
+  "/:boardId/background",
+  authenticate,
+  isValidId("boardId"),
+  isReqObject,
+  validateBody(boardSchemas.editBackgroundSchema),
+  ctrl.changeBackground
+);
+
 module.exports = router;

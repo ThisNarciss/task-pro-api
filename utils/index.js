@@ -4,6 +4,7 @@ const getUniqAvatarName = require("./getUniqAvatarName");
 const validateBody = require("./validateBody");
 const handleMongooseError = require("./handleMongooseError");
 const getSendHelpData = require("./getSendHelpData");
+const avatarModifier = require("./avatarModifier");
 
 module.exports = {
   HttpError,
@@ -12,4 +13,5 @@ module.exports = {
   validateBody,
   handleMongooseError,
   getSendHelpData,
+  avatarModifier,
 };

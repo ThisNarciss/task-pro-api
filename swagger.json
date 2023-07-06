@@ -539,6 +539,61 @@
         }
       }
     },
+    "/boards/{boardId}/background": {
+      "patch": {
+        "tags": ["Boards"],
+        "summary": "Update board background",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Update board background",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardBackgroundRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Board background update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBoardBackgroundResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Id is not valid",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
     "/columns/": {
       "post": {
         "tags": ["Columns"],
@@ -1807,6 +1862,63 @@
             "board": {
               "_id": "649a97a2c1be193710fd1607",
               "active": false
+            }
+          }
+        }
+      },
+      "UpdateBoardBackgroundRequest": {
+        "type": "object",
+        "required": ["backgrounds"],
+        "properties": {
+          "background": {
+            "type": "string",
+            "description": "board background",
+            "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+          }
+        }
+      },
+      "UpdateBoardBackgroundResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Response status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "Response code",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "board": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Board id",
+                    "example": "64981b6b16b4d1a3e79993ef"
+                  },
+                  "background": {
+                    "type": "string",
+                    "description": "board background",
+                    "example": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "board": {
+              "_id": "649a97a2c1be193710fd1607",
+              "background": "https://res.cloudinary.com/dzvwikezm/image/upload/v1687438249/backgrounds/desktop-abstraction%401x.jpg"
             }
           }
         }

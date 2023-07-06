@@ -13,8 +13,11 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "/avatars",
-  allowedFormats: ["jpg", "png"],
+  params: {
+    folder: "avatars",
+    allowed_formats: ["jpg", "png"],
+    transformation: [{ width: 32, height: 32 }],
+  },
   filename: (req, file, cb) => {
     const { mimetype } = file;
     const uniqName = getUniqAvatarName(mimetype);

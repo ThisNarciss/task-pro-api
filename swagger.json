@@ -12,8 +12,8 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
-    { "url": "http://localhost:8682/api" },
-    { "url": "https://task-pro-api.onrender.com/api" }
+    { "url": "http://localhost:8682" },
+    { "url": "https://task-pro-api.onrender.com" }
   ],
   "tags": [
     {
@@ -42,7 +42,7 @@
     }
   ],
   "paths": {
-    "/users/register": {
+    "/api/users/register": {
       "post": {
         "tags": ["Users"],
         "summary": "User registration",
@@ -85,7 +85,7 @@
         }
       }
     },
-    "/users/login": {
+    "/api/users/login": {
       "post": {
         "tags": ["Users"],
         "summary": "User login",
@@ -125,7 +125,7 @@
         }
       }
     },
-    "/users/logout": {
+    "/api/users/logout": {
       "post": {
         "tags": ["Users"],
         "summary": "User logout",
@@ -144,7 +144,7 @@
         }
       }
     },
-    "/users/current": {
+    "/api/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get current user",
@@ -170,7 +170,7 @@
         }
       }
     },
-    "/users/current/{userId}": {
+    "/api/users/current/{userId}": {
       "put": {
         "tags": ["Users"],
         "summary": "Edits user profile",
@@ -223,7 +223,7 @@
         }
       }
     },
-    "/users/current/{userId}/theme": {
+    "/api/users/current/{userId}/theme": {
       "patch": {
         "tags": ["Users"],
         "summary": "Edit user theme",
@@ -271,7 +271,7 @@
         }
       }
     },
-    "/boards/": {
+    "/api/boards/": {
       "get": {
         "tags": ["Boards"],
         "summary": "Get all board",
@@ -345,7 +345,7 @@
       }
     },
 
-    "/boards/{boardId}": {
+    "/api/boards/{boardId}": {
       "put": {
         "tags": ["Boards"],
         "summary": "Edit board",
@@ -484,7 +484,7 @@
         }
       }
     },
-    "/boards/{boardId}/active": {
+    "/api/boards/{boardId}/active": {
       "patch": {
         "tags": ["Boards"],
         "summary": "Update active board",
@@ -539,7 +539,7 @@
         }
       }
     },
-    "/columns/": {
+    "/api/columns/": {
       "post": {
         "tags": ["Columns"],
         "summary": "Add column",
@@ -579,7 +579,7 @@
         }
       }
     },
-    "/columns/{columnId}": {
+    "/api/columns/{columnId}": {
       "get": {
         "tags": ["Columns"],
         "summary": "Get column by id",
@@ -715,7 +715,7 @@
         }
       }
     },
-    "/tasks/": {
+    "/api/tasks/": {
       "post": {
         "tags": ["Tasks"],
         "summary": "Add task",
@@ -755,7 +755,7 @@
         }
       }
     },
-    "/tasks/{taskId}": {
+    "/api/tasks/{taskId}": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get task by id",
@@ -944,7 +944,7 @@
         }
       }
     },
-    "/email/": {
+    "/api/email/": {
       "post": {
         "tags": ["Email"],
         "summary": "Send help message",
@@ -984,7 +984,7 @@
         }
       }
     },
-    "/backgrounds/": {
+    "/api/backgrounds/": {
       "get": {
         "tags": ["Backgrounds"],
         "summary": "Get backgrounds",

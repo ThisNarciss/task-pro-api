@@ -16,7 +16,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "avatars",
     allowed_formats: ["jpg", "png"],
-    transformation: [{ width: 32, height: 32 }],
+    transformation: [{ width: 32, height: 32, quality: 100 }],
   },
   filename: (req, file, cb) => {
     const { mimetype } = file;

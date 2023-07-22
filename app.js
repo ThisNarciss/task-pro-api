@@ -19,7 +19,7 @@ const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
-const whitelist = ["https://i-kolesnyk.github.io", "http://localhost:8682"];
+const whitelist = ["https://i-kolesnyk.github.io", "http://localhost:3000"];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -31,10 +31,6 @@ const corsOptions = {
     }
   },
 };
-
-// const corsOptions = {
-//   origin: "http://localhost:8682",
-// };
 
 app.use(logger(formatsLogger));
 app.use(cors(corsOptions));

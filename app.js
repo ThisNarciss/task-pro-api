@@ -19,20 +19,22 @@ const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
-const whitelist = [
-  "https://i-kolesnyk.github.io/project-task-pro/",
-  "http://localhost:3000",
-];
+const whitelist = ["https://i-kolesnyk.github.io", "http://localhost:8682"];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    console.log(origin);
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
 };
+
+// const corsOptions = {
+//   origin: "http://localhost:8682",
+// };
 
 app.use(logger(formatsLogger));
 app.use(cors(corsOptions));

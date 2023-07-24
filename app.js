@@ -6,6 +6,8 @@ const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 
+const { DEV_URL } = process.env;
+
 const {
   boardsRouter,
   columnsRouter,
@@ -19,11 +21,10 @@ const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
-const whitelist = ["https://i-kolesnyk.github.io", "http://localhost:3000"];
+const whitelist = ["https://i-kolesnyk.github.io", DEV_URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    console.log(origin);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {

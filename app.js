@@ -33,15 +33,14 @@ const corsOptions = {
 };
 
 app.use(logger(formatsLogger));
-app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use("/api/users", usersRouter);
-app.use("/api/boards", boardsRouter);
-app.use("/api/columns", columnsRouter);
-app.use("/api/tasks", tasksRouter);
-app.use("/api/email", emailRouter);
-app.use("/api/backgrounds", backgroundsRouter);
+app.use("/api/users", cors(corsOptions), usersRouter);
+app.use("/api/boards", cors(corsOptions), boardsRouter);
+app.use("/api/columns", cors(corsOptions), columnsRouter);
+app.use("/api/tasks", cors(corsOptions), tasksRouter);
+app.use("/api/email", cors(corsOptions), emailRouter);
+app.use("/api/backgrounds", cors(corsOptions), backgroundsRouter);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {

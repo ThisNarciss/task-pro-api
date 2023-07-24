@@ -3,7 +3,7 @@
   "info": {
     "version": "2.0.2",
     "title": "Task Pro API",
-    "description": "Showing off swagger-ui-express",
+    "description": "Task Pro documentation for managing projects and tasks",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
